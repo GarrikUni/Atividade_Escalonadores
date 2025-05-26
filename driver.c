@@ -12,9 +12,9 @@
 
 #include "task.h"
 #include "list.h"
-// #include "schedule_rr_p.h"
 // #include "schedule_edf.h"
-#include "schedule_rr.h" 
+// #include "schedule_rr.h" 
+#include "schedule_rr_p.h"
 
 #define SIZE    100
 
@@ -40,10 +40,10 @@ int main(int argc, char *argv[])
         // deadline = atoi(srtsep(&temp, ","));
 
         // add the task to the scheduler's list of tasks
-        // add(name,priority,burst); // <- RR_P
         // add(name,priority,burst, deadline); //to EDF only
-        // V - Round-Robin add task - V
-        rr_add(name, priority, burst); // <- Round-Robin add task
+
+        // rr_add(name, priority, burst); // <- Round-Robin add task
+        rr_p_add(name,priority,burst); // <- RR_Priority
 
         free(temp);
     }
@@ -52,7 +52,8 @@ int main(int argc, char *argv[])
 
     // invoke the scheduler
     // schedule();
-    rr_schedule();
+    // rr_schedule();
+    rr_p_schedule();
 
     return 0;
 }
